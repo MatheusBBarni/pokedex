@@ -1,13 +1,13 @@
 import { PokemonApiResponse } from 'model/Pokemon'
 import { GetServerSideProps } from 'next'
 import pokemonApi from 'services/pokemon-api'
-import HomeTempalte, { HomeTempalteProps } from 'template/Home'
+import HomeTemplate, { HomeTemplateProps } from 'template/Home'
 
-export default function Home({ pokemons }: HomeTempalteProps) {
-  return <HomeTempalte pokemons={pokemons} />
+export default function Home({ pokemons }: HomeTemplateProps) {
+  return <HomeTemplate pokemons={pokemons} />
 }
 
-export const getServerSideProps: GetServerSideProps<HomeTempalteProps> =
+export const getServerSideProps: GetServerSideProps<HomeTemplateProps> =
   async () => {
     try {
       const { data } = await pokemonApi.get<PokemonApiResponse>('/pokedex.json')

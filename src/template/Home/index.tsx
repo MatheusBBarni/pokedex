@@ -9,11 +9,11 @@ import PokemonCard from 'components/PokemonCard'
 import ScrollToTop from 'components/ScrollToTop'
 import sanitizeString from 'util/sanitize-string'
 
-export type HomeTempalteProps = {
+export type HomeTemplateProps = {
   pokemons: Pokemon[]
 }
 
-const HomeTempalte = ({ pokemons }: HomeTempalteProps) => {
+const HomeTemplate = ({ pokemons }: HomeTemplateProps) => {
   const [pokemonNameOrNumber, setPokemonNameOrNumber] = useState<string>('')
   const [filterNameOrNumber, setFilterNameOrNumber] = useState<string>('')
 
@@ -55,4 +55,4 @@ const HomeTempalte = ({ pokemons }: HomeTempalteProps) => {
   )
 }
 
-export default HomeTempalte
+export default HomeTemplate

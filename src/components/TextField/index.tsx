@@ -8,7 +8,7 @@ export type TextFieldProps = {
 
 const TextField = ({ label, value, onValueChange }: TextFieldProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper role="textfield">
       <S.Label htmlFor={label}>{label}</S.Label>
       <S.Input
         id={label}

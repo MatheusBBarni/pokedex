@@ -12,13 +12,13 @@ const PokemonCard = ({
   pokemon: { name, img, type, num }
 }: PokemonCardProps) => {
   return (
-    <S.Card>
+    <S.Card role="card">
       <Image src={img} width={100} height={250} objectFit="scale-down" />
       <S.Number>#{num}</S.Number>
       <S.Name>{name}</S.Name>
       <S.TypeList>
         {type.map((pokemonType, index) => (
-          <TypeBadge key={index} type={pokemonType}>
+          <TypeBadge role="badge" key={index} type={pokemonType}>
             {pokemonType}
           </TypeBadge>
         ))}
