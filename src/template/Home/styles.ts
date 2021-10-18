@@ -47,7 +47,7 @@ export const PokemonList = styled.div`
   padding-top: 30px;
   display: flex;
   flex-flow: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   gap: 8px;
   background-color: var(--white);
 `

@@ -7,6 +7,7 @@ import Button from 'components/Button'
 import { Pokemon } from 'model/Pokemon'
 import PokemonCard from 'components/PokemonCard'
 import ScrollToTop from 'components/ScrollToTop'
+import sanitizeString from 'util/sanitize-string'
 
 export type HomeTempalteProps = {
   pokemons: Pokemon[]
@@ -14,6 +15,7 @@ export type HomeTempalteProps = {
 
 const HomeTempalte = ({ pokemons }: HomeTempalteProps) => {
   const [pokemonNameOrNumber, setPokemonNameOrNumber] = useState<string>('')
+  const [filterNameOrNumber, setFilterNameOrNumber] = useState<string>('')
 
   return (
     <S.Container>
@@ -26,14 +28,27 @@ const HomeTempalte = ({ pokemons }: HomeTempalteProps) => {
             onValueChange={(value) => setPokemonNameOrNumber(value)}
           />
         </div>
-        <Button>
+        <Button onClick={() => setFilterNameOrNumber(pokemonNameOrNumber)}>
           <SearchIcon size={25} color="var(--white)" />
         </Button>
       </S.Filter>
       <S.PokemonList>
-        {pokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
+        {pokemons
+          .filter((item) => {
+            if (!filterNameOrNumber || filterNameOrNumber === '') {
+              return item
+            }
+            const sanitizedFilter = sanitizeString(filterNameOrNumber)
+            if (
+              sanitizeString(item.name).includes(sanitizedFilter) ||
+              `#${sanitizeString(item.num)}`.includes(sanitizedFilter)
+            ) {
+              return item
+            }
+          })
+          .map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
       </S.PokemonList>
       <ScrollToTop />
     </S.Container>
